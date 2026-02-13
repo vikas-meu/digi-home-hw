@@ -1,5 +1,7 @@
 # ESP32 PyCamera Home Assistant Project
 
+![Robot Image](Digi_home.jpg)
+
 ## Overview
 
 This project transforms an Adafruit PyCamera (ESP32-S3) into a powerful smart home assistant, security camera, gaming console, and Telegram-controlled robot brain. It features live camera preview, motion-triggered security snapshots, photo capture, audio recording/playback, simple games, and full Telegram remote control. The device communicates with external Arduinos via I2C to control lights, fans, motors (dance/sleep/expressions), and other appliances.
