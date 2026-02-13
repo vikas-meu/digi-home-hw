@@ -1,6 +1,6 @@
 # ESP32 PyCamera Home Assistant Project
 
-![Robot Image](Digi_home.png)
+![Robot Image](Digi_Home.png)
 
 ## Overview
 
