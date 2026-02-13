@@ -27,14 +27,14 @@
 #include <esp_camera.h>
 
 // --- CREDENTIALS ---
-const char* ssid = "";
-const char* password = "";
-#define BOTtoken ""
-#define CHAT_ID ""
+const char* ssid = " ";
+const char* password = " ";
+#define BOTtoken " "
+#define CHAT_ID " "
 
 // Pin definitions
-#define MIC 2
-#define SPEAKER 46
+#define MIC 20
+#define SPEAKER 18
 #define AWEXP_SPKR_SD 0 // Speaker mute control on AW9523 pin 0
 #define SDA_PIN 34
 #define SCL_PIN 33
@@ -737,7 +737,7 @@ void handleNewMessages(int numNewMessages) {
       Serial.println("Telegram record command received!");
       sendTelegramMessage(chat_id, "🎤 Recording audio...", message_id);
       recordAudio();
-    } else if (text == "play" || text == "/play") {
+    } else if (text == "play" || text == "letsplay" || text == "/letsplay") {
       Serial.println("Telegram play command received!");
       sendTelegramMessage(chat_id, "🔊 Playing audio...", message_id);
       playAudio();
@@ -749,26 +749,35 @@ void handleNewMessages(int numNewMessages) {
       tracking = false;
       sendTelegramMessage(chat_id, "🛑 Dance stopped!", message_id);
       sendI2CCommandTo(ARDUINO_ADDR, "stopdance");
+      sendI2CCommandTo(ARDUINO2_ADDR, "stop");
       Serial.println("stopdance");
     } else if (text == "stop") {
       tracking = false;
       securityMode = false;
       sendTelegramMessage(chat_id, "🛑 All commands stopped!", message_id);
       sendI2CCommandTo(ARDUINO_ADDR, "stop");
+      sendI2CCommandTo(ARDUINO2_ADDR, "stop");
+      sendI2CCommandTo(ARDUINO2_ADDR, "wake");
       Serial.println("stop");
     } else if (text == "dance" || text == "/dance") {
       sendDanceCommand();
       sendTelegramMessage(chat_id, "💃 Dance mode activated!", message_id);
+      sendI2CCommandTo(ARDUINO2_ADDR, "exp1");
+      sendI2CCommandTo(ARDUINO_ADDR, "dance");
     } else if (text == "/securitymode" || text == "securitymode") {
       securityMode = true;
       sendTelegramMessage(chat_id, "🔒 Security mode enabled! Monitoring for motion...", message_id);
-      sendI2CCommandTo(ARDUINO_ADDR, "Security");
+      sendI2CCommandTo(ARDUINO_ADDR, "Secure");
+      sendI2CCommandTo(ARDUINO2_ADDR, "secure");
       Serial.println("Security mode enabled!");
     } else if (text == "/iamhome" || text == "iamhome") {
       securityMode = false;
       sendTelegramMessage(chat_id, "🏠 Welcome home! Security mode disabled.", message_id);
       sendI2CCommandTo(ARDUINO_ADDR, "Security mode disabled!");
       Serial.println("Security mode disabled!");
+      sendI2CCommandTo(ARDUINO2_ADDR, "wake");
+      sendI2CCommandTo(ARDUINO_ADDR, "wakeup");
+      sendI2CCommandTo(ARDUINO_ADDR, "stop");
     } else if (text == "lighton") {
       sendI2CCommandTo(ARDUINO_ADDR, "lighton");
       sendTelegramMessage(chat_id, "💡 Light turned on!", message_id);
@@ -804,13 +813,15 @@ void handleNewMessages(int numNewMessages) {
       }
     } else if (text == "sleep") {
       sendI2CCommandTo(ARDUINO2_ADDR, "sleep");
+      sendI2CCommandTo(ARDUINO_ADDR, "sleep");
       sendTelegramMessage(chat_id, "😴 Sleep mode enabled", message_id);
     } else if (text == "wakeup") {
-      sendI2CCommandTo(ARDUINO2_ADDR, "wakeup");
+      sendI2CCommandTo(ARDUINO2_ADDR, "wake");
       sendTelegramMessage(chat_id, "👋 Waking up the robot!", message_id);
+      sendI2CCommandTo(ARDUINO_ADDR, "wakeup");
     } else if (text == "exp1") {
       sendI2CCommandTo(ARDUINO2_ADDR, "exp1");
-      sendTelegramMessage(chat_id, "😢 Expression changed to sad", message_id);
+      sendTelegramMessage(chat_id, " Expression changed ", message_id);
     } else if (text == "exp2") {
       sendI2CCommandTo(ARDUINO2_ADDR, "exp2");
       sendTelegramMessage(chat_id, "😊 Expression changed to normal", message_id);
