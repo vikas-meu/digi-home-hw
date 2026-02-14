@@ -1,4 +1,4 @@
-# Project Title
+# Digi-Home
 
 ## Overview
 This repository contains the hardware and software components for the Digi Home project. It includes detailed instructions for setup, usage, and contribution.
