@@ -2,7 +2,6 @@
 
 ![Digi-Home Banner](https://img.shields.io/badge/Project-Digi--Home-blue?style=for-the-badge&logo=arduino)
 ![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
 > **A futuristic, interactive home automation assistant powered by Arduino and ESP32.**
 
