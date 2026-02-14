@@ -121,7 +121,7 @@ or use `/instantschedule` + same text in one line.
 - Serial monitor (115200 baud) shows detailed debug info
 - Press SEL button anytime to return to main menu
 
-Enjoy your fully Telegram-controlled smart home robot camera! 🚀
+Enjoy your  smart home robot ! 🚀
 
 I am Vikas 
 I Love Robotics ❤️
