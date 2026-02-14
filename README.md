@@ -13,6 +13,7 @@ This repository contains the hardware and software components for the Digi Home 
 - Jumper Wires
 - Breadboards
 
+![Robot](https://github.com/user-attachments/assets/35652542-67a0-4f1d-972a-1c42c2e1016f)
 ## Hardware Architecture
 The hardware architecture consists of multiple Arduino slave boards communicating with a master board. 
 
